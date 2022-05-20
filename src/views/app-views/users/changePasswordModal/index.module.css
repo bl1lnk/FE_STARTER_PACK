@@ -1,0 +1,136 @@
+/*
+--grey-300: #557086;
+--grey-350: #3d5564;
+--grey-400: #2f4553;
+--grey-500: #213743;
+--grey-600: #1a2c38;
+ */
+
+ .inputHeader{
+    flex:1;
+    width: 100%;
+}
+.mrButton{
+   width: 140px;
+   height: 45px;
+   font-family: 'Roboto', sans-serif;
+   font-size: 11px;
+   text-transform: uppercase;
+   letter-spacing: 2.5px;
+   font-weight: 500;
+   color: #fff;
+    background-color: #2f4553; 
+   border: none;
+   border-radius: 5px;
+   box-shadow:  0px 5px #1a2c38;
+   transition: all 0.3s ease 0s;
+   cursor: pointer;
+   outline: none;
+   margin: 2px;
+   transition: transform ease 300ms;
+   
+   }
+   
+
+   .mrButtonActive{
+       width: 140px;
+       height: 45px;
+       font-family: 'Roboto', sans-serif;
+       font-size: 11px;
+       text-transform: uppercase;
+       letter-spacing: 2.5px;
+       font-weight: 500;
+       color: #fff;
+        background-color: #3660b8; 
+       border: none;
+       border-radius: 5px;
+       box-shadow:  0px 5px #1a2c38;
+       transition: all 0.3s ease 0s;
+       cursor: pointer;
+       outline: none;
+       margin: 2px;
+       transition: transform ease 300ms;
+       
+       }
+
+
+   .mrButton:hover {
+   background-color: #3d5564;
+   box-shadow: 0px 4px #3d5564;
+   color: #fff;
+   transform: translate(0, -5px);
+   }
+
+   .mrButton:active, .mrButton:focus{
+       background:#3660b8 !important
+   }
+
+  /*  .isActive:{
+       background-color:pink;
+       color:red
+   }  */
+
+   .addButton{
+       background-color: #007E33;
+       width: 100%;
+       color:#fff;
+       font-weight: 700;
+       border:1px solid #007E33;
+
+   }
+
+   .addButton:active, .addButton:hover, .addButton:focus{
+       background-color: #00C851;
+       border:1px solid #00C851;
+   }
+   
+ /*   .mrButton:focus{
+       background: #213743;
+   }
+   */
+
+  /*  .ant-btn-primary{color:#fff;background:red}
+   .ant-btn-primary:focus{
+       background:pink
+   } */
+
+#total{
+   font-size: 25px;
+   font-weight: 500;
+}
+
+.updateTicket{
+   color: #00C851;
+   display:block;
+   border:1px solid #00C851;
+   padding:8px;
+   font-weight: bold;
+   font-size: 14px;
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
+   background-color: #transparent;
+   border-radius:5px;
+   margin:0;
+   width: "100%"; 
+}
+
+.updateTicket:hover{
+   background-color: #43e985;
+   color:#fff;
+   cursor:pointer
+
+}
+
+
+.GameSettings{
+margin:24px;
+}
+
+.userInfo_UL{
+    list-style: none;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+}
+
+.userInfo_UL li{
+     margin-top: 1px;
+}
