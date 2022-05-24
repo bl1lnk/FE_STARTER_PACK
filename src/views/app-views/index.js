@@ -23,11 +23,7 @@ export const AppViews = () => {
         */}
 
 
-        <RoleBasedRouting
-          AuthNeeded={ROLE_MASTER} 
-          path={`${APP_PREFIX_PATH}/settings`}
-          component={lazy(() => import(`./settings`))}
-        />
+       
 
         <RoleBasedRouting
           AuthNeeded={ROLE_COMERCIAL}
@@ -43,12 +39,7 @@ export const AppViews = () => {
           component={lazy(() => import(`./movements/listMovements`))}
         />
 
-        <RoleBasedRouting
-          AuthNeeded={ROLE_SHOP} 
-          exactAuth={true}
-          path={`${APP_PREFIX_PATH}/utilite`}
-          component={lazy(() => import(`./utilite`))}
-        />
+     
 
 
         

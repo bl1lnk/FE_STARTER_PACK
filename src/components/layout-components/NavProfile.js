@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect} from "react";
 import { Menu, Dropdown, Avatar } from "antd";
 import {useSelector, connect, useDispatch } from "react-redux";
 import { useReactToPrint } from "react-to-print";
-import ComponentToPrint from "views/app-views/utilite/printer/ComponentToPrint";
+
 import { 
   PrinterOutlined, 
   LockOutlined, 
@@ -136,11 +136,7 @@ export const NavProfile = ({signOut}) => {
     </Dropdown>
     
 
-    {/* print */}
-    <div style={{display:'none'}}>
-      <ComponentToPrint ref={componentRef}  userCode={code} />
-    </div> 
-    {/* printend here */}
+ 
     </>
   );
 }

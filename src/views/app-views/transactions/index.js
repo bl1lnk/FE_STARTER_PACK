@@ -16,12 +16,7 @@ const TransactionsViews = ({match}) => {
           path={`${match.url}/add`}
           component={lazy(() => import(`./addTransaction`))}
         />
-        <RoleBasedRouting
-          AuthNeeded={ROLE_SHOP} 
-          path={`${match.url}/player`}
-          exactAuth={true}
-          component={lazy(() => import(`./playerTransactions`))}
-        />
+      
 
         <Redirect from={`${match.url}`} to={`${match.url}/list`} />
       </Switch>
