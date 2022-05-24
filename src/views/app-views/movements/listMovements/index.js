@@ -1,24 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react'
-import { Card, Table, Select, Input, Button, Badge, Menu, Tag,DatePicker, Descriptions, Row, notification, Statistic  } from 'antd';
+import { Card, Table, Select, Input, DatePicker,notification, Statistic  } from 'antd';
 import OrderListData from "assets/data/order-list.data.json"
-import { EyeOutlined, FileExcelOutlined, SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
-import AvatarStatus from 'components/shared-components/AvatarStatus';
-import EllipsisDropdown from 'components/shared-components/EllipsisDropdown';
+import { SearchOutlined,  } from '@ant-design/icons';
 import Flex from 'components/shared-components/Flex'
-import NumberFormat from 'react-number-format';
 import moment from 'moment-timezone'; 
-import { DATE_FORMAT_DD_MM_YYYY } from 'constants/DateConstant'
 import utils from 'utils'
+
 import MovementService from "services/TransactionService"
 import { currency } from 'configs/EnvironmentConfig';
 
 
 //DUMMY DATA
-
-
-
-
 
 
 
@@ -35,30 +28,10 @@ function onOk(value) {
   console.log('onOk: ', value);
 }
 
-const getPaymentStatus = status => {
-	if(status === 'Paid') {
-		return 'success'
-	}
-	if(status === 'Pending') {
-		return 'warning'
-	}
-	if(status === 'Expired') {
-		return 'error'
-	}
-	return ''
-}
 
-const getShippingStatus = status => {
-	if(status === 'Ready') {
-		return 'blue'
-	}
-	if(status === 'Shipped') {
-		return 'cyan'
-	}
-	return ''
-}
 
-const paymentStatusList = ['Paid', 'Pending', 'Expired']
+
+
 
 const Movements = () => {
 	/*  */
@@ -68,8 +41,7 @@ const Movements = () => {
 
 	const [list, setList] = useState([])
 	const [backUpList, setBackUpList] = useState([])
-	const [selectedRows, setSelectedRows] = useState([])
-	const [selectedRowKeys, setSelectedRowKeys] = useState([])
+
 
 	const [totalCredit, setTotalCredit] = useState(0)
 	const [totalDebit, setTotalDebit] = useState(0)
@@ -87,22 +59,6 @@ const Movements = () => {
 		}
 	}
 
-	const dropdownMenu = row => (
-		<Menu>
-			<Menu.Item>
-				<Flex alignItems="center">
-					<EyeOutlined />
-					<span className="ml-2">View Details</span>
-				</Flex>
-			</Menu.Item>
-			<Menu.Item>
-				<Flex alignItems="center">
-					<PlusCircleOutlined />
-					<span className="ml-2">Add to remark</span>
-				</Flex>
-			</Menu.Item>
-		</Menu>
-	);
 
 	const tableColumns = [
 	
@@ -143,12 +99,7 @@ const Movements = () => {
 		}
 	];
 	
-	const rowSelection = {
-		onChange: (key, rows) => {
-			setSelectedRows(rows)
-			setSelectedRowKeys(key)
-		}
-	};
+;
 
 	const onSearch = e => {
 		const value = e.currentTarget.value
@@ -156,7 +107,7 @@ const Movements = () => {
 		const data = utils.wildCardSearch(searchArray, value)
 		setList(data)
 		setUpdateShowTot(updateShowTot+1)
-		setSelectedRowKeys([])
+
 	}
 
 	const RangePickerChangeHandler = (value, dateString) =>{

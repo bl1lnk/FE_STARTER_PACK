@@ -40,14 +40,14 @@ export function* signInWithFBEmail() {
 	});
 }
 
-export function* signOut() {
-  yield takeEvery(SIGNOUT, function* () {
-	const history = useHistory();
+
+
+export function* SignOut() {
+  	yield takeEvery(SIGNOUT, function* () {
 		try {
-			
 			yield call(JwtAuthService.signOut);
-			history.push('/auth/login')
 		} catch (err) {
+			console.log(err);
 			yield put(showAuthMessage(err));
 		}
 	});
@@ -104,7 +104,7 @@ export function* signInWithFacebook() {
 export default function* rootSaga() {
   yield all([
 		fork(signInWithFBEmail),
-		fork(signOut),
+		fork(SignOut),
 		fork(signUpWithFBEmail),
 		fork(signInWithFBGoogle),
 		fork(signInWithFacebook)

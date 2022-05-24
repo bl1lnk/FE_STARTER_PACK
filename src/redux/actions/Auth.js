@@ -12,7 +12,8 @@ import {
   SIGNIN_WITH_GOOGLE_AUTHENTICATED,
   SIGNIN_WITH_FACEBOOK,
   SIGNIN_WITH_FACEBOOK_AUTHENTICATED,
-  UPDATE_USER
+  UPDATE_USER,
+  SIGNIN_SUCCESS
 } from '../constants/Auth';
 
 /* export const signIn = (user) => {
@@ -43,6 +44,12 @@ export const signOutSuccess = () => {
   return {
     type: SIGNOUT_SUCCESS,
   }
+};
+
+export const signInSuccess = () => {
+  return {
+    type: SIGNIN_SUCCESS,
+  };
 };
 
 export const signUp = (user) => {

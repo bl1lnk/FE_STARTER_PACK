@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
-import { Tabs, Form, Button, message, Row, Col,Card, Input, Select, InputNumber } from 'antd';
+import { Form, Button, message,Card, Input} from 'antd';
 import Flex from 'components/shared-components/Flex'
 import UserService from 'services/UserService';
 
@@ -44,7 +44,7 @@ const AddUser = () => {
 			"username" : username,
 			"password" : password
 		}).then((resp) => {
-			if (resp.code == 200) {
+			if (resp.code === 200) {
 				message.success('User added with success ! ');
 				setAdnBtnLoading(false)
 			}

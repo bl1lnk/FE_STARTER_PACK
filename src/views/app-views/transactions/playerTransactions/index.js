@@ -1,37 +1,23 @@
-/* eslint-disable no-unused-vars */
-import React, {useState,useEffect, useRef, forwardRef, useImperativeHandle} from 'react'
-import { Card, Table, Select, Input, Button, Badge, Menu, Tag,DatePicker, Descriptions, Row, notification, Statistic  } from 'antd';
-import OrderListData from "assets/data/order-list.data.json"
-import { EyeOutlined, FundProjectionScreenOutlined, SearchOutlined, BorderlessTableOutlined,TrophyOutlined } from '@ant-design/icons';
-import AvatarStatus from 'components/shared-components/AvatarStatus';
-import EllipsisDropdown from 'components/shared-components/EllipsisDropdown';
+import React, {useState,useEffect} from 'react'
+import { Card, Table, Input, Button, Tag,DatePicker,  notification, Statistic  } from 'antd';
+import {FundProjectionScreenOutlined, SearchOutlined } from '@ant-design/icons';
 import Flex from 'components/shared-components/Flex'
 import NumberFormat from 'react-number-format';
 import moment from 'moment-timezone'; 
-import { DATE_FORMAT_DD_MM_YYYY } from 'constants/DateConstant'
 import utils from 'utils'
 import TransactionService from "services/TransactionService"
+import PrintOldTicketModal from './PrintOldTicketModal';
 import { currency } from 'configs/EnvironmentConfig';
-const { Option } = Select
+
 const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY-MM-DD HH:mm"';
 
-function onChange(value, dateString) {
 
-}
-
-function onOk(value) {
-
-}
 
 
 
 
 const PlayerTransactions = () => {
-	const childRef = useRef();
-
-/* 	const dateFormat = 'YYYY-MM-DD HH:mm';
-	const time =  moment().tz('Africa/Tunis').format('LLLL') */
 
 
 	const [startTimeOfTheDay, setStartTimeOfTheDay]= useState(moment().clone().startOf('day').tz('Africa/Tunis').set("hour", '8').format('YYYY-MM-DD hh:mm'))
@@ -55,8 +41,13 @@ const PlayerTransactions = () => {
 
 	
 
+
 	
 
+	const oldTicketHandler = (value) =>{
+		setOldTicketInformation(value)
+		setvisible_OTM(true)
+	}
 	const tableColumns = [
 		{
 			title: 'Ticket code',
@@ -98,15 +89,31 @@ const PlayerTransactions = () => {
 			dataIndex: 'status',
 			render: status => (
 				<>
-				  { status == 'WAITING' && <Tag color="gold">Not played</Tag>}
-				  { status == 'OVER' && <Tag color="red"> Played</Tag>}
-				  { status == 'COMPLETED' && <Tag color="green">Paid</Tag>}
-				  { status == 'PLAYED' && <Tag color="pink">In Play</Tag>}
+				  { status === 'WAITING' && <Tag color="gold">Not played</Tag>}
+				  { status === 'OVER' && <Tag color="red"> Played</Tag>}
+				  { status === 'COMPLETED' && <Tag color="green">Paid</Tag>}
+				  { status === 'PLAYED' && <Tag color="pink">In Play</Tag>}
 				</>
 			),
 			sorter: (a, b) => utils.antdTableSorter(a, b, 'status')
 			/* defaultSortOrder  :'descend' */
-		}
+		},
+		{
+			title: '',
+			dataIndex: '',
+			render: (value, code) => (
+				
+				<div>
+			{/* 	<Child ref={childRef}  key={value.code} user={value} />
+				
+				<Button onClick={() => childRef.current.Print(value)}><PrinterOutlined /></Button>	 */}
+				<PrintOldTicketModal  visibleOTM={visible_OTM} setVisibleOTM={setvisible_OTM}  ticket ={oldTicketInformation} currency={currency}/>
+				<Button onClick={()=>oldTicketHandler(value)}><FundProjectionScreenOutlined /></Button>
+			  </div>
+		
+			),
+			
+		},
 		
 
 	];
@@ -130,19 +137,6 @@ const PlayerTransactions = () => {
 		}
 
 		
-		const calculateTotal= (data)=>{
-			/* let totalRounds = 0;
-			let totalWins =0;
-			data.map((txn)=>{
-		
-				totalRounds += txn.rounds
-			
-				totalWins += (txn.winned * txn.bet)
-			})
-			setTotalWinning(totalWins)
-			setTotalRounds(totalRounds)	
-		 */
-		}
 
 		
 	useEffect(()=>{
@@ -189,7 +183,6 @@ const PlayerTransactions = () => {
 						   format="YYYY-MM-DD HH:mm"
 						   placeholder={['Start Time', 'End Time']}
 						   onChange={RangePickerChangeHandler}
-						   onOk={onOk}
 						   defaultValue={[moment(startTimeOfTheDay, dateFormat), moment(endTimeOfTheDay, dateFormat)]}
                         />
                      </div>

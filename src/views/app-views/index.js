@@ -3,14 +3,12 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Loading from 'components/shared-components/Loading';
 import { APP_PREFIX_PATH } from 'configs/AppConfig'
 import RoleBasedRouting from "auth/guard/RoleBasedRouting";
-import { ROLE_COMERCIAL, ROLE_MASTER, ROLE_SHOP, ROLE_USER } from "redux/constants/Auth";
+import { ROLE_COMERCIAL, ROLE_MASTER, ROLE_SHOP } from "redux/constants/Auth";
 import useAuth from "hooks/useAuth";
-import {TransactionsViews} from "./transactions";
+
 
 export const AppViews = () => {
-  const lazyhome = () =>{
-    import(`./users`)
-  } 
+ 
   var defaultRoute = "transactions"
   const {userRole} = useAuth([]);
 
@@ -21,7 +19,16 @@ export const AppViews = () => {
   return (
     <Suspense fallback={<Loading cover="content"/>}>
       <Switch>
-      
+       {/*  <Route path={`${APP_PREFIX_PATH}/utilite`} component={lazy(() => import(`./utilite`))} />
+        */}
+
+
+        <RoleBasedRouting
+          AuthNeeded={ROLE_MASTER} 
+          path={`${APP_PREFIX_PATH}/settings`}
+          component={lazy(() => import(`./settings`))}
+        />
+
         <RoleBasedRouting
           AuthNeeded={ROLE_COMERCIAL}
           path={`${APP_PREFIX_PATH}/users`}
@@ -36,7 +43,12 @@ export const AppViews = () => {
           component={lazy(() => import(`./movements/listMovements`))}
         />
 
-        
+        <RoleBasedRouting
+          AuthNeeded={ROLE_SHOP} 
+          exactAuth={true}
+          path={`${APP_PREFIX_PATH}/utilite`}
+          component={lazy(() => import(`./utilite`))}
+        />
 
 
         

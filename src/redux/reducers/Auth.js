@@ -8,7 +8,8 @@ import {
 	SHOW_LOADING,
 	SIGNIN_WITH_GOOGLE_AUTHENTICATED,
   SIGNIN_WITH_FACEBOOK_AUTHENTICATED,
-  UPDATE_USER
+  UPDATE_USER,
+  SIGNIN_SUCCESS
 
 } from '../constants/Auth';
 
@@ -30,7 +31,7 @@ const auth = (state = initState, action) => {
 			return {
 				...state,
 				loading: false,
-				redirect: '/',
+				redirect: '/app',
 				token: true,
 				user: action.user,
 				credit: action.credit,
@@ -54,11 +55,9 @@ const auth = (state = initState, action) => {
 			return {
 				...state,
 				token: null,
-				redirect: '/',
 				loading: false,
 				showMessage: false,
 				token: null,
-				redirect: "",
 				loading: false,
 				role: "ROLE_USER",
 				user: "",
@@ -100,6 +99,14 @@ const auth = (state = initState, action) => {
 				loading: false,
 				token: action.token
 			}
+		}
+		case SIGNIN_SUCCESS: {
+			return {
+			  ...state,
+			  redirect: "",
+			  message: "",
+			  showMessage: false,
+			};
 		}
 		default:
 			return state;

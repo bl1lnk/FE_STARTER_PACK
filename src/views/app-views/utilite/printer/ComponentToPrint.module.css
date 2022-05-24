@@ -1,0 +1,79 @@
+/* 
+.ticketPrint{
+    display:block;
+    background-color: white;
+    max-width: 318px;
+    min-width: 318px;
+    min-height: 400px;
+    max-height: 400px;
+    
+}
+
+.wrap-ticketPrinter{
+    font-weight: 300;
+    font-size: 15px;    
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+ul{
+    list-style-type: none;
+    padding-top: 20px;
+
+}
+
+ul li {
+    margin-top: 5px;
+}
+.list{
+    margin-top: 24px;;
+    margin-left:20px;
+    background-color: white;
+}
+
+
+
+.codeBar{
+    width: 20px;
+    padding-bottom: 15px;
+}
+/* .qr{
+
+    padding-top:20px;
+    margin-left:40px;
+    width: 70%;
+} */
+
+
+/* 
+.bodyTicket{
+    margin-top: 70px;
+}
+  */
+
+  
+  .n216{
+    padding:3px;
+    background:black;
+    border:1px solid black;
+    border-radius: 10px;
+    color:white;
+}
+.newVegasQrBottom {
+  
+    color:black;
+    font-weight: 900;
+    letter-spacing: .2rem;
+    font-family:Arial, Helvetica, sans-serif;
+    font-style:italic;
+    font-size: 18px;
+}
+
+.ticketList{
+    padding:0; 
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    text-align: center;
+    justify-content:center;
+} 

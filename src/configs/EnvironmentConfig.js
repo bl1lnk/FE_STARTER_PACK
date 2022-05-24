@@ -1,9 +1,9 @@
 const dev = {
-  API_ENDPOINT_URL: 'https://newvegas216.com/api/'
+  API_ENDPOINT_URL: 'https://api.newvegas216.com/api/'
 };
 
 const prod = {
-  API_ENDPOINT_URL: 'https://api.prod.com'
+  API_ENDPOINT_URL: 'https://api.newvegas216.com/api/'
 };
 
 const test = {

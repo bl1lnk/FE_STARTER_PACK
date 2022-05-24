@@ -1,46 +1,24 @@
-import React,{useState,useRef} from 'react'
-import { Button, Card, Row, Col, Input,Modal, Badge,Form, Timeline, Descriptions, message, Divider} from 'antd';
+import React,{useState} from 'react'
+import { Button, Card,Input,Modal, Form,  Descriptions, message} from 'antd';
 import style_pwd from './index.module.css'
 import UserService from 'services/UserService';
-import { currency } from 'configs/EnvironmentConfig';
+
 import NumberFormat from 'react-number-format';
 
 
 function ChangePasswordModal({setVisible,visible, user}) {
     
-const [loading, setLoading] = useState(false)
-
-
-const bet =5
-
-const rounds = 500
-const showModal = () => {
-  setVisible(true);
- };
-
- const handleOk = () =>{
-   setLoading(true);
-   setTimeout(()=>{
-     setLoading(false);
-     setVisible(false);
-   });
- }
+  const [changePwdBtn, setChangePwdBTn] = useState(false)
 
  const handleCancel = () =>{
      setVisible(false);
  }
 
 
- // PRINTER VARIABLES 
-
- const componentRef = useRef();
-
- const handlePrint= () =>{
- }
 
  const isConfirmPassword = (password1, password2) =>{
    
-  if(password1 != password2){
+  if(password1 !== password2){
     return false
   }
   return true
@@ -51,29 +29,38 @@ const showModal = () => {
    console.log(values)
   let ok = isConfirmPassword(values.password, values.password2)
   if(ok){
-
+    setChangePwdBTn(true)
      if(user){
         UserService.subChangePassword({
             "userId":user.id,
             "password":values.password
           }).then((resp) => {
-                if(resp.code == 200){
+                if(resp.code === 200){
               message.success(resp.data[0])
+              setChangePwdBTn(false)
+              setVisible(false)
             }
                 }).catch((e)=> {
                   console.log(e);
+                  setChangePwdBTn(false)
+                  setVisible(false)
                 }) 
      }else{
         UserService.changePassword({
             "currentPassword":values.oldpassword,
             "newPassword":values.password2
           }).then((resp) => {
-                if(resp.code == 200){
+                if(resp.code === 200){
               message.success(resp.data[0])
+              setChangePwdBTn(false)
+              setVisible(false)
             }
                 }).catch((e)=> {
                   console.log(e);
+                  setChangePwdBTn(false)
+                  setVisible(false)
                 }) 
+             
      }
 
 
@@ -96,7 +83,7 @@ const onFinishFailed = errorInfo => {
     <Modal
     visible={visible}
     title=""
-    onOk={handleOk}
+ 
     onCancel={handleCancel}
     footer={null}
 
@@ -176,7 +163,7 @@ const onFinishFailed = errorInfo => {
   
 
       <Form.Item style={{marginLeft:"50%"}}>
-        <Button type="primary" htmlType="submit" className={style_pwd.addButton} >
+        <Button type="primary" htmlType="submit" className={style_pwd.addButton}  loading={changePwdBtn}>
           Confirm
         </Button>
          

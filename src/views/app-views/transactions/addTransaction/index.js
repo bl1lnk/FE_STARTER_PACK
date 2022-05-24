@@ -1,43 +1,22 @@
 import React, {useState} from 'react'
-import { Modal, Button, Input, Form, Select, InputNumber,Checkbox ,message, notification} from 'antd';
+import { Modal, Button, Input, Form ,message, } from 'antd';
 import TransactionService from 'services/TransactionService';
 import { updateUser } from 'redux/actions/Auth';
 import {useDispatch } from "react-redux";
 import { 
-  CreditCardOutlined,
-  DollarOutlined,
   SwapOutlined
 } from '@ant-design/icons';
-
 
 function AddTransaction({user, setUserListUpdate, userListUpdate}) {
 
   const dispatch= useDispatch()
 
-  const { Option } = Select;
 
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 5 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 12 },
-  },
-};
-
-
-  const [loading, setLoading] = useState(false)
   const [visible, setVisible] = useState(false)
 
-
-
-
-  let [validateStatusPc, setValidateStatusPc] = useState("empty");
   let [validateStatusAmount, setValidateStatusAmount] = useState("empty");
 
-  const [playercode, setPlayercode] = useState(null);
+
   const [amount, setAmount] = useState(0);
   const [loadingDeposit, setLoadingDeposit] = useState(false)
   const [loadingWithdraw, setLoadingWithdraw] = useState(false)
@@ -46,9 +25,7 @@ const formItemLayout = {
   };
 
   const handleOk = () =>{
-    setLoading(true);
     setTimeout(()=>{
-      setLoading(false);
       setVisible(false);
     });
   }
@@ -61,9 +38,7 @@ const formItemLayout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
   };
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-  };
+ 
   const onFinish = values => {
     console.log('Success:', values);
   };
@@ -72,19 +47,12 @@ const formItemLayout = {
     console.log('Failed:', errorInfo);
   };
 
-  const playerCodeHandler = (e) =>{
-    setPlayercode(e.target.value);
-    if(playercode.length >4){
-      setValidateStatusPc("success")
-    }else{
-      setValidateStatusPc("error")
-    }
-  }
+ 
 
 
 
 
-  const re = '/^[0-9\b]+$/;'
+
 
   const playerAmountHandler = (e) =>{
     
@@ -103,7 +71,7 @@ const formItemLayout = {
 }
 
 const addTransaction = (type) =>{
-  if(type == 'credit'){
+  if(type === 'credit'){
     setLoadingDeposit(true)
   }else{
     setLoadingWithdraw(true)
@@ -121,22 +89,20 @@ const addTransaction = (type) =>{
       dispatch(updateUser(resp.data.senderCreditAfter))
       setVisible(false)
       message.success(`${type}  ${amount} DT to ${user.username}  success! `);
-      if(type == 'credit'){
+      if(type === 'credit'){
         setLoadingDeposit(false)
       }else{
         setLoadingWithdraw(false)
       }
       
   
-    }else{
-      notification.error({message : "Error fetching transactions ..." , duration :3});
     }
     
-    }).catch((e)=> {
-    //notification.error({message : "Error fetching transactions ..." , duration :3});
-    setLoading(false)
+    }).catch(()=> {
+ 
 
-     if(type == 'credit'){
+
+     if(type === 'credit'){
         setLoadingDeposit(false)
       }else{
         setLoadingWithdraw(false)

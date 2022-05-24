@@ -8,6 +8,8 @@ import { IntlProvider } from "react-intl";
 import { ConfigProvider } from 'antd';
 import { APP_PREFIX_PATH, AUTH_PREFIX_PATH } from 'configs/AppConfig'
 import useBodyClass from 'hooks/useBodyClass';
+import { ROLE_SHOP } from "redux/constants/Auth";
+import RoleBasedRouting from "auth/guard/RoleBasedRouting";
 
 export const Views = (props) => {
   const { locale, location, direction } = props;
@@ -25,9 +27,9 @@ export const Views = (props) => {
           <Route path={AUTH_PREFIX_PATH}>
             <AuthLayout direction={direction} />
           </Route>
-          <Route path={APP_PREFIX_PATH}>
-            <AppLayout direction={direction} location={location}/>
-          </Route>
+          <RoleBasedRouting path={APP_PREFIX_PATH} AuthNeeded={ROLE_SHOP}>
+            <AppLayout direction={direction} location={location} />
+          </RoleBasedRouting>
         </Switch>
       </ConfigProvider>
     </IntlProvider>

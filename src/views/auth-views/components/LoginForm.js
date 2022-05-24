@@ -9,7 +9,8 @@ import {
 	showLoading, 
 	showAuthMessage, 
 	hideAuthMessage,
-	authenticated
+	authenticated,
+	signInSuccess
 } from 'redux/actions/Auth';
 import JwtAuthService from 'services/JwtAuthService'
 import { useHistory } from "react-router-dom";
@@ -20,6 +21,7 @@ export const LoginForm = (props) => {
 
 	const { 
 		otherSignIn, 
+		signInSuccess,
 		showForgetPassword, 
 		hideAuthMessage,
 		onForgetPasswordClick,
@@ -38,6 +40,7 @@ export const LoginForm = (props) => {
 	const onLogin = values => {
 		showLoading()
 		JwtAuthService.login(values).then(resp => {
+			signInSuccess();
 			authenticated(resp)
 			console.log(resp);
 		}).then(e => {
@@ -48,14 +51,14 @@ export const LoginForm = (props) => {
 	
 	useEffect(() => {
 		if (token !== null && allowRedirect) {
-			history.push(redirect)
+			history.push(redirect);
 		}
 		if(showMessage) {
 			setTimeout(() => {
 			hideAuthMessage();
 		}, 3000);
 		}
-	});
+	} , []);
 	
 	
 	return (
@@ -148,7 +151,8 @@ const mapDispatchToProps = {
 	showAuthMessage,
 	showLoading,
 	hideAuthMessage,
-	authenticated
+	authenticated,
+	signInSuccess 
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

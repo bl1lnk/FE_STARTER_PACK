@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom';
-import AddUser from "./add-user/index"
-import UserList from "./list-users/index"
+import AddUser from "./add-user"
+import usersList from "./list-users"
 /*
 import ProductList from './product-list'
 import AddProduct from './add-product'
@@ -18,7 +18,7 @@ const Users = props => {
 		<Switch>
 			<Redirect exact from={`${match.url}`} to={`${match.url}/users-list`} />
 			<Route path={`${match.url}/add-user`} component={AddUser} />
-            <Route path={`${match.url}/users-list`} component={UserList} />
+            <Route path={`${match.url}/users-list`} component={usersList} />
 		</Switch>
 	)
 }

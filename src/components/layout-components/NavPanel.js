@@ -24,11 +24,7 @@ export class NavPanel extends Component {
 	render() {
 		return (
       <>
-        <Menu mode="horizontal">
-          <Menu.Item key="panel">
-          <NavProfile />
-          </Menu.Item>
-        </Menu>
+      
         <Drawer
           title="Theme Config"
           placement={this.props.direction === DIR_RTL ? 'left' : 'right'} 
@@ -38,6 +34,8 @@ export class NavPanel extends Component {
         >
           <ThemeConfigurator/>
         </Drawer>
+
+        <NavProfile />
       </>
     );
 	}

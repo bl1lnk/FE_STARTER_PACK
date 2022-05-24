@@ -6,7 +6,6 @@ export const RoleBasedRouting = (props) => {
   const { exactAuth, AuthNeeded, ...rest } = props;
 
   const { isAuth, exact } = useAuth([AuthNeeded]);
-
   if (exactAuth) {
     if (exact) {
       return <Route {...rest}>{props.children}</Route>;

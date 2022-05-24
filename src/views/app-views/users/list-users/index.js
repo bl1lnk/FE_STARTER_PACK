@@ -1,26 +1,25 @@
 import React, {useState, useEffect} from 'react'
-import { Card, Table, Select, Input, Button, Badge, Menu, Alert, Tag, Popconfirm, message } from 'antd';
-import UsersListData from "./user-list.data.json"
-import { SwapOutlined , EyeInvisibleOutlined, SearchOutlined, PlusCircleOutlined,EyeOutlined,EditOutlined } from '@ant-design/icons';
+import { Card, Table, Input, Button, Menu, Tag, Popconfirm, message } from 'antd';
+import {EyeInvisibleOutlined, SearchOutlined, PlusCircleOutlined,EyeOutlined,EditOutlined } from '@ant-design/icons';
 import EllipsisDropdown from 'components/shared-components/EllipsisDropdown';
 import Flex from 'components/shared-components/Flex'
 import NumberFormat from 'react-number-format';
 import { useHistory } from "react-router-dom";
 import utils from 'utils'
 import AddTransaction from 'views/app-views/transactions/addTransaction';
-import { ROLE_COMERCIAL, ROLE_MASTER } from 'redux/constants/Auth';
-import {useSelector } from "react-redux";
+
+
 import ChangePasswordModal from '../changePasswordModal/ChangePasswordModal';
 import UserService from 'services/UserService';
 
 
 
-const { Option } = Select
+
 
 const UserList = () => {
 
 	const [visible, setVisible] = useState(false);
-	const [visibleStatus, setVisibleStatus] = useState(false);
+
 
 	const [updateViewInStatusChange, setUpdateViewInStatusChange] = useState(0)
 
@@ -46,17 +45,7 @@ const UserList = () => {
 		setUserPerRow(row)
 		setVisible(true)
 	}
-	const getStatusStatus = status => {
-	if(status == true) {
-		return <><Tag color="lime">Active</Tag>
-		</>
-	}else{
-		return <><Tag color="red">Blocked</Tag>
 
-		</>
-	}
-	return null
-}
 	const dropdownMenu = row => (
 		
 		<Menu>
@@ -98,24 +87,21 @@ const UserList = () => {
 		history.push(`/app/users/add-user`)
 	}
 	
-	const viewDetails = row => {
-		history.push(`/app/apps/users/edit-user/${row.id}`)
-	}
+
 	
 	const modifierStatus = row => {
-	
-		setVisibleStatus(true)
+
 		setUserPerRow(row)
 	}
 
 	const changeStatusHandler = ( userId , status ) =>{
-		let statusString
+	
 	  
 		UserService.ChangeStatus({
 		  "userId": userId,
 		  "active": status
 		}).then((resp) => {
-			  if(resp.code == 200){
+			  if(resp.code === 200){
 			message.success(resp.data[0])
 			setUpdateViewInStatusChange(updateViewInStatusChange+1)
 		  }
@@ -189,45 +175,16 @@ const UserList = () => {
 	
 	}
 
-	const handleShowCategory = value => {
-		if(value !== 'All') {
-			const key = 'isActive'
-			const data = utils.filterArray(UsersListData, key, value)
-			setUsers(data)
-		} else {
-			setUsers(usersBackup)
-		}
-	}
-
 	useEffect(()=>{
 	
 		setLoading(true)
 		  UserService.users({}).then((resp) => {
-			if (resp.code == 200) {
+			if (resp.code === 200) {
 			 
 			
 				console.log('users',resp.data);
 			
-				/* let data = resp.data
-				let ArrayUsers= []
-				 resp.data.map(value=>{
-					ArrayUsers.push(value)
-					if(value.subUsers){
-						value.subUsers.map(val=>{
-							ArrayUsers.push(val)
-						})
-					}
-
-					if(value.subUsers.subUsers){
-						value.subUsers.subUsers.map(val=>{
-							ArrayUsers.push(val)
-						})
-					}					
-				 }) */
-				 
-			/* 
-				 setUsers(ArrayUsers)
-				 setUsersBackup(ArrayUsers) */
+				
 				 setUsers(resp.data)
 				 setUsersBackup(resp.data)
 				setLoading(false)
@@ -238,7 +195,7 @@ const UserList = () => {
 			setLoading(false)
 		  }) 
 	
-	},[ChangePasswordModal,userListUpdate,updateViewInStatusChange ])
+	},[userListUpdate,updateViewInStatusChange ])
 	
 
 	return (
@@ -250,17 +207,7 @@ const UserList = () => {
 						<Input placeholder="Search" prefix={<SearchOutlined />} onChange={e => onSearch(e)}/>
 					</div>
 					<div className="mb-3">
-					{/* 	<Select 
-							defaultValue="All" 
-							className="w-100" 
-							style={{ minWidth: 180 }} 
-							onChange={handleShowCategory} 
-							placeholder="Category"
-
-						>
-							<Option value="All">Users </Option>
-							{usersStatus.map(elm => <Option key={elm} value={elm}>{elm}</Option>)}
-						</Select> */}
+				
 					</div>
 				</Flex>
 				<div>

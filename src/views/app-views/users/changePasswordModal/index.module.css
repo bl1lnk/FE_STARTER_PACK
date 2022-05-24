@@ -1,6 +1,6 @@
 /*
 --grey-300: #557086;
---grey-350: #3d5564;
+--grey-350: #f3e522;
 --grey-400: #2f4553;
 --grey-500: #213743;
 --grey-600: #1a2c38;
@@ -41,7 +41,7 @@
        letter-spacing: 2.5px;
        font-weight: 500;
        color: #fff;
-        background-color: #3660b8; 
+    background-color: #f2e30d; 
        border: none;
        border-radius: 5px;
        box-shadow:  0px 5px #1a2c38;
@@ -55,14 +55,14 @@
 
 
    .mrButton:hover {
-   background-color: #3d5564;
-   box-shadow: 0px 4px #3d5564;
+   background-color: #f3e522;
+   box-shadow: 0px 4px #f3e522;
    color: #fff;
    transform: translate(0, -5px);
    }
 
    .mrButton:active, .mrButton:focus{
-       background:#3660b8 !important
+       background:#f2e30d !important
    }
 
   /*  .isActive:{
@@ -71,17 +71,17 @@
    }  */
 
    .addButton{
-       background-color: #007E33;
+       background-color: #f2e30d;
        width: 100%;
        color:#fff;
        font-weight: 700;
-       border:1px solid #007E33;
+       border:1px solid #f2e30d;
 
    }
 
    .addButton:active, .addButton:hover, .addButton:focus{
-       background-color: #00C851;
-       border:1px solid #00C851;
+       background-color: #f9f186;
+       border:1px solid #f9f186;
    }
    
  /*   .mrButton:focus{
@@ -100,9 +100,9 @@
 }
 
 .updateTicket{
-   color: #00C851;
+   color: #f9f186;
    display:block;
-   border:1px solid #00C851;
+   border:1px solid #f9f186;
    padding:8px;
    font-weight: bold;
    font-size: 14px;
@@ -114,7 +114,7 @@
 }
 
 .updateTicket:hover{
-   background-color: #43e985;
+   background-color: #f9f186;
    color:#fff;
    cursor:pointer
 

@@ -1,5 +1,5 @@
 import { 
-  DashboardOutlined,
+
   UserAddOutlined,
   TeamOutlined,
   SwapOutlined,
@@ -34,16 +34,7 @@ const dashBoardNavTree = [{
     breadcrumb: false,
     submenu: []
   }]
-},/* ,
-{
-  key: 'users',
-  path: `${APP_PREFIX_PATH}/users`,
-  title: 'Users',
-  permission:ROLE_COMERCIAL,
-  icon: TeamOutlined,
-  breadcrumb: false,
-  submenu: []
-}, */
+},
 {
   key: 'Financement',
   path: `${APP_PREFIX_PATH}/transactions/list`,
@@ -81,7 +72,7 @@ const dashBoardNavTree = [{
     {
       key: 'player transactions',
       path: `${APP_PREFIX_PATH}/transactions/player`,
-      title: 'Player Transactions',
+      title: 'Tickets',
 
       icon: UserSwitchOutlined,
       breadcrumb: false,

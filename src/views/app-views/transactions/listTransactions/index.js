@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react'
-import { Card, Table, Select, Input, Button, Badge, Menu, Tag,DatePicker, Statistic, notification  } from 'antd';
-import OrderListData from "assets/data/order-list.data.json"
+import { Card, Table, Select, Input, Menu, Tag,DatePicker, Statistic, notification  } from 'antd';
+
 import { EyeOutlined, FileExcelOutlined, SearchOutlined, PlusCircleOutlined } from '@ant-design/icons';
-import AvatarStatus from 'components/shared-components/AvatarStatus';
-import EllipsisDropdown from 'components/shared-components/EllipsisDropdown';
+
 import Flex from 'components/shared-components/Flex'
-import NumberFormat from 'react-number-format';
+
 import moment from 'moment-timezone'; 
 import utils from 'utils'
 import TransactionService from 'services/TransactionService';
@@ -18,9 +17,6 @@ const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY-MM-DD HH:mm"';
 
 
-function onOk(value) {
-
-}
 
 
 
@@ -118,7 +114,7 @@ const Transactions = () => {
 			dataIndex: 'type',
 			render:value => (
 				<div>
-					 { value == 'credit' ? (      <Tag color="green">{value}</Tag>):<Tag color="gold">{value}</Tag>}
+					 { value === 'credit' ? (      <Tag color="green">{value}</Tag>):<Tag color="gold">{value}</Tag>}
 				</div>
 			),
 			sorter: (a, b) => utils.antdTableSorter(a, b, 'type')
@@ -151,17 +147,19 @@ const Transactions = () => {
 		let totcredit = 0;
 		let totdebit =0;
 		data.map((txn)=>{
-			if(txn.type == 'credit'){
+			if(txn.type === 'credit'){
 				setTotalCredit(totalCredit+txn.amount)
 				totcredit += txn.amount
+			
 		
-			} else if(txn.type=='debit'){
+			} else if(txn.type==='debit'){
 				totdebit += txn.amount
 			}else{
 				console.error('error:calculateTotal')
 			}
 			setTotalDebit(totdebit)
-			setTotalCredit(totcredit)		
+			setTotalCredit(totcredit)	
+			return 0	
 		})
 	}
 
@@ -198,6 +196,7 @@ const Transactions = () => {
 
 	},[updateShowTot,firstDayOfMonth,lastDayOfMonth])
 
+
 	return (
 		<Card>
 			<Flex alignItems="center" justifyContent="between" mobileFlex={false}>
@@ -226,7 +225,6 @@ const Transactions = () => {
                         format="YYYY-MM-DD HH:mm"
                         placeholder={['Start Time', 'End Time']}
                         onChange={RangePickerChangeHandler}
-                        onOk={onOk}
 						defaultValue={[moment(lastDayOfMonth, dateFormat), moment(firstDayOfMonth, dateFormat)]}
                         />
                      </div>

@@ -3,6 +3,9 @@ import { API_BASE_URL } from "configs/AppConfig";
 import history from "../history";
 //import { AUTH_TOKEN } from "redux/constants/Auth";
 import { notification } from "antd";
+import { useSelector } from "react-redux";
+
+
 
 const service = axios.create({
   baseURL: API_BASE_URL,
@@ -10,22 +13,30 @@ const service = axios.create({
   withCredentials: true,
 });
 
+
+
 // Config
 const ENTRY_ROUTE = "/auth/login";
 //const TOKEN_PAYLOAD_KEY = "authorization";
 const PUBLIC_REQUEST_KEY = "public-request";
 
+
+
 // API Request interceptor
 service.interceptors.request.use(
-  (config) => {
-    if (config.headers[PUBLIC_REQUEST_KEY]) {
-    /*   config.withCredentials = false; */
-    }
+  
 
-/* 	if (false || !config.headers[PUBLIC_REQUEST_KEY]) {
+  (config) => {
+    /* const token = useSelector((state) => state.token) 
+    if (config.headers[PUBLIC_REQUEST_KEY]) {
+     config.withCredentials = false; 
+    } */
+
+ 	/* if (!token || !config.headers[PUBLIC_REQUEST_KEY]) {
 		history.push(ENTRY_ROUTE)
+    console.log('no tokn found !');
 		window.location.reload();
-  } */
+  }  */
     return config;
   },
   (error) => {

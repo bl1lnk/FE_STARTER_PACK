@@ -1,0 +1,150 @@
+/*
+--grey-300: #557086;
+--grey-350: #f3e522;
+--grey-400: #2f4553;
+--grey-500: #213743;
+--grey-600: #1a2c38;
+ */
+
+ .inputHeader{
+    flex:1;
+    width: 100%;
+}
+.mrButton{
+   width: 25%;
+   height: 45px;
+   font-family: 'Roboto', sans-serif;
+   font-size: 11px;
+   text-transform: uppercase;
+   letter-spacing: 2.5px;
+   font-weight: 500;
+   color: #fff;
+    background-color: #2f4553; 
+   border: none;
+   border-radius: 5px;
+   box-shadow:  0px 5px #1a2c38;
+   transition: all 0.3s ease 0s;
+   cursor: pointer;
+   outline: none;
+   margin: 2px;
+   transition: transform ease 300ms;
+   
+   }
+   
+
+   .mrButtonActive{
+      width: 25%;
+       height: 45px;
+       font-family: 'Roboto', sans-serif;
+       font-size: 11px;
+       text-transform: uppercase;
+       letter-spacing: 2.5px;
+       font-weight: 500;
+       color: #fff;
+        background-color: #f2e30d; 
+       border: none;
+       border-radius: 5px;
+       box-shadow:  0px 5px #1a2c38;
+       transition: all 0.3s ease 0s;
+       cursor: pointer;
+       outline: none;
+       margin: 2px;
+       transition: transform ease 300ms;
+       
+       }
+
+
+   .buttonStyleDisabled{
+      width: 25%;
+      height: 45px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-weight: 500;
+      color: #fff;
+       background-color: #f2e30d; 
+      border: none;
+      border-radius: 5px;
+      box-shadow:  0px 5px #1a2c38;
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      outline: none;
+      margin: 2px;
+      transition: transform ease 300ms;
+   }    
+
+
+   .mrButton:hover {
+    width: 25%;
+   background-color:#f3e522 !important;
+   box-shadow: 0px 4px #f3e522;
+   color: #fff;
+   transform: translate(0, -5px);
+   }
+
+   .mrButton:active, .mrButton:focus{
+       background:#f2e30d !important
+   }
+
+  /*  .isActive:{
+       background-color:pink;
+       color:red
+   }  */
+
+   .addButton{
+       background-color: #f2e30d;
+       width: 100%;
+       color:#fff;
+       font-weight: 700;
+       border:1px solid #f2e30d;
+
+   }
+
+   .addButton:active, .addButton:hover, .addButton:focus{
+        width: 100%;
+       background-color: #f9f186 !important;
+    
+
+   }
+   
+ /*   .mrButton:focus{
+       background: #213743;
+   }
+   */
+
+  /*  .ant-btn-primary{color:#fff;background:red}
+   .ant-btn-primary:focus{
+       background:pink
+   } */
+
+#total{
+   font-size: 25px;
+   font-weight: 500;
+}
+
+.updateTicket{
+   color: #f9f186;
+   display:block;
+   border:1px solid #f9f186;
+   padding:8px;
+   font-weight: bold;
+   font-size: 14px;
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
+   background-color: transparent;
+   border-radius:5px;
+   margin:0;
+   width: "100%"; 
+}
+
+.updateTicket:hover{
+   background-color: #f9f186;
+   color:#fff;
+   cursor:pointer
+
+}
+
+
+.GameSettings{
+   margin:24px;
+}
